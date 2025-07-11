@@ -120,7 +120,7 @@ bool Rat::deactivate() {
     }
 
     do {
-        if (pe.szExeFile == "notrat.exe") {
+        if (pe.th32ProcessID == GetCurrentProcessId()) {
             const auto proc = OpenProcess(PROCESS_TERMINATE, false, pe.th32ProcessID);
             if (proc != NULL && proc != INVALID_HANDLE_VALUE) {
                 TerminateProcess(proc, 1);
